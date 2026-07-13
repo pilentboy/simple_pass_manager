@@ -1,86 +1,18 @@
 {
-    "github": {
-        "9a7e3896-724e-47cf-8f2f-c7122938787d": {
-            "password": "mdqdq2131dqd",
-            "username": "reyhaneh"
-        },
-        "f46925f5-c9f2-4da0-993b-70ca6475055a": {
-            "password": "pilentboy",
-            "username": "12345678"
-        },
-        "fbfcaaa9-7653-432b-beeb-c0369e2c0035": {
-            "password": "pilentboy2",
-            "username": "12345678"
-        },
-        "5a082161-aea4-4de8-8e66-74ebf0c1c2da": {
-            "password": "1231412421",
-            "username": "mahdi241"
-        },
-        "0024616b-8729-477d-84be-97aed06290fb": {
-            "password": "01931231",
-            "username": "madhi22"
-        },
-        "7f1d2074-b452-40c8-87a0-1c7df60de588": {
-            "password": "12321412",
-            "username": "test22"
+    "steam": {
+        "d2d0e89b-c0ff-4f29-82f8-3bde99f6233d": {
+            "password": "1234",
+            "username": "pilentboy22"
         }
     },
     "gmail": {
-        "1b0e1e27-86e5-4d77-8964-8c967a6d269f": {
-            "password": "sirxmahdi",
-            "username": "13123dqd"
-        }
-    },
-    "steam": {
-        "14e5b680-4599-4f3c-8a7d-17bed1da8604": {
+        "d2d0e89b-c0ff-4f29-82f8-3bde99f6233d": {
             "password": "1234",
-            "username": "pilentboy"
+            "username": "pidq2212322"
         },
-        "a2e91114-99e5-4219-9ae8-734d4982c956": {
-            "password": "1234",
-            "username": "test"
-        },
-        "bbc4297d-c561-48a8-bc8e-d303d8e7d4bd": {
-            "password": "test213123",
-            "username": "sadegh"
-        },
-        "bab80263-42d2-4221-8231-418fa3e79351": {
-            "password": "pad123dqd",
-            "username": "pilmahdi"
-        },
-        "64ff77eb-2f3e-40c1-b6bf-91117063948b": {
-            "password": "1234",
-            "username": "mynameis"
-        },
-        "38d870cb-6b91-4837-a1b6-5ce6ee5895a2": {
-            "password": "dqd",
-            "username": "test2"
-        },
-        "0cbd3eb6-9d78-4a2f-bc48-d8a7fce6a1ea": {
-            "password": "dqdqd",
-            "username": "test22"
-        },
-        "6e3306e4-215c-4377-9570-c39b4eba54bf": {
-            "password": "dqd",
-            "username": "xxqdqd"
-        }
-    },
-    "yahoo": {
-        "faef0a1c-3abe-4c30-8926-35f762fcb035": {
-            "password": "dqdq1323dqd",
-            "username": "mahdiebrahimi"
-        }
-    },
-    "telegram": {
-        "4bb7afb2-d97d-4e2e-985c-52e7a1876bfc": {
-            "password": "123124123123123",
-            "username": "mahdi22"
-        }
-    },
-    "microsoft": {
-        "7b859971-cc57-4581-a1d6-0d3c2e3ca01f": {
-            "password": "dqd2",
-            "username": "test22"
+        "7fd35831-48a3-49ae-8e53-8b194c29808a": {
+            "password": "42131",
+            "username": "mahdi"
         }
     }
 }

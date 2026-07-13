@@ -3,38 +3,41 @@ import uuid
 import os
 import subprocess
 from getpass import getpass
+import bcrypt
+
+
 
 
 #set password for this user
 user_env_pass_name="account_manager_password"
-user_env_password=os.environ.get(user_env_pass_name)
+user_env_password=os.environ.get(user_env_pass_name).encode()
 
-# if user_env_password == None:
-#     create_passwrod_info="""
-#     ==== Account Manager ====
-#     Before starting:
-#     1) Create a password for using this app
-#     2) The password will be asked each time you open it
-#     3) The password length must be over 4 characters and less than 100!
-#     Your password: 
-# """
-#     while True:
-#         new_user_pass=getpass(create_passwrod_info)
-#         if len(new_user_pass) >= 5 and len(new_user_pass) <= 100:
-#             subprocess.run(["setx",user_env_pass_name,new_user_pass],check=True)
-#             print("Your app is quite ready to use... Just one step")
-#             print("Please restart the app!")
-#             exit(1)
-#         else:
-#             print("The password length must be over 4 characters and less than 100!")
-# else:
-#     # user login
-#     while True:
-#      user_pass=getpass("Please enter your password: ")
-#      if user_pass == user_env_password:
-#          break 
-#      else:
-#          print("The password is wrong, please try again.")
+if user_env_password == None:
+    create_passwrod_info="""
+    ==== Account Manager ====
+    Before starting:
+    1) Create a password for using this app
+    2) The password will be asked each time you open it
+    3) The password length must be over 4 characters and less than 100!
+    Your password: 
+"""
+    while True:
+        new_user_pass=getpass(create_passwrod_info)
+        if len(new_user_pass) >= 5 and len(new_user_pass) <= 100:
+            subprocess.run(["setx",user_env_pass_name,bcrypt.hashpw(new_user_pass.encode(),bcrypt.gensalt())],check=True)
+            print("Your app is quite ready to use... Just one step")
+            print("Please restart the app!")
+            exit(1)
+        else:
+            print("The password length must be over 4 characters and less than 100!")
+else:
+    # user login
+    while True:
+     user_pass=getpass("Please enter your password: ")
+     if bcrypt.checkpw(user_pass.encode(),user_env_password ) :
+         break 
+     else:
+         print("The password is wrong, please try again.")
 
     
 

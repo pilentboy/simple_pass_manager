@@ -4,13 +4,13 @@ import os
 import subprocess
 from getpass import getpass
 import bcrypt
-
+from cryptography.fernet import Fernet
 
 
 
 #set password for this user
 user_env_pass_name="account_manager_password"
-user_env_password=os.environ.get(user_env_pass_name).encode()
+user_env_password=os.environ.get(user_env_pass_name)
 
 if user_env_password == None:
     create_passwrod_info="""
@@ -24,6 +24,7 @@ if user_env_password == None:
     while True:
         new_user_pass=getpass(create_passwrod_info)
         if len(new_user_pass) >= 5 and len(new_user_pass) <= 100:
+            subprocess.run(["setx",'account_password_enc_key',Fernet.generate_key()],check=True)
             subprocess.run(["setx",user_env_pass_name,bcrypt.hashpw(new_user_pass.encode(),bcrypt.gensalt())],check=True)
             print("Your app is quite ready to use... Just one step")
             print("Please restart the app!")
@@ -34,7 +35,8 @@ else:
     # user login
     while True:
      user_pass=getpass("Please enter your password: ")
-     if bcrypt.checkpw(user_pass.encode(),user_env_password ) :
+     if bcrypt.checkpw(user_pass.encode(),user_env_password.encode() ) :
+         cipher=Fernet(os.environ.get('account_password_enc_key').encode())
          break 
      else:
          print("The password is wrong, please try again.")
@@ -88,18 +90,24 @@ def save_databse():
         json.dump(database,f,indent=4)
 
 
+def hash_password(password):
+    return bcrypt.hashpw(password.encode(),bcrypt.gensalt())
+
+
+
+#----------- error: saving hashed pass in json
 def add_new_account(username,password,accountType):
     new_account_id=str(uuid.uuid4())
     if(accountType.lower() in database):
         service_modifying=database[accountType]
         service_modifying[new_account_id]={
-            "password":password,
+            "password":cipher.encrypt(password.encode()).decode(),
             "username":username
         }
     else:
         database[accountType]={
             new_account_id:{
-            "password":password,
+            "password":cipher.encrypt(password.encode()).decode(),
             "username":username
             }
         }
@@ -118,7 +126,8 @@ def show_accounts(account_type="*"):
             print(f"-----{s}")
             for a in database[s]:
                 print(f"username: {database[s][a]['username']}")
-                print(f"password: {database[s][a]['password']}")
+                password = database[s][a]["password"].encode("utf-8")
+                print(f"password: {cipher.decrypt(password).decode()}")
                 print("---------")
             
         
@@ -131,7 +140,7 @@ def show_accounts(account_type="*"):
         selected_service=database[account_type]
         for s in selected_service:
             print(f"username: {selected_service[s]['username']}")
-            print(f"password: {selected_service[s]['password']}")
+            print(f"password: {cipher.decrypt(selected_service[s]['password']).decode()}")
             print("---------")
 
 def delete_account(account_type,username):

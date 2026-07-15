@@ -156,7 +156,7 @@ def delete_account(account_type,username):
         else:
             print("The username is invalid")
     else:
-        print("you have no account saved in the database with for this service")
+        print("you have no account saved in the database  for this service")
 
 
 while True:

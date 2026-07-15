@@ -134,7 +134,7 @@ def show_accounts(account_type="*"):
                 
         return
     if  account_type not in database:
-        print("you have no account saved in the database with for this service")
+        print("you have no account saved in the database  for this service")
         return 
     else:
         selected_service=database[account_type]

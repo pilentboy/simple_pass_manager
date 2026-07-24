@@ -1,8 +1,14 @@
 {
-  "gmail": {
-    "adc358be-de06-4650-b4c0-3f0a6766e6a5": {
-      "password": "gAAAAABqYzfVc0ihpOgY5QK2C93tVY6bwLAC1caEf3OmrqpabSRAHBErt7g4L8445qBpWZM-YrwtrAMpmgwnuO-Nw40slmf3zA==",
-      "username": "test"
+    "gmail": {
+        "adc358be-de06-4650-b4c0-3f0a6766e6a5": {
+            "password": "gAAAAABqYzfVc0ihpOgY5QK2C93tVY6bwLAC1caEf3OmrqpabSRAHBErt7g4L8445qBpWZM-YrwtrAMpmgwnuO-Nw40slmf3zA==",
+            "username": "test"
+        }
+    },
+    "netflix": {
+        "d7152ad4-90ef-4382-8558-895e453f6b02": {
+            "password": "gAAAAABqYzjwVvB1Dge32oDGjsfxAcYPHGPSj6h74__3fVG8lZiQiRT2A2hwwCqoo0Z8u330RzM6IK70Rr-I1X_vOEQbgb5jfA==",
+            "username": "filing"
+        }
     }
-  }
 }

@@ -22,10 +22,10 @@ if user_env_password == None:
     Your password: 
 """
     while True:
-        new_user_pass=getpass(create_passwrod_info)
-        if len(new_user_pass) >= 5 and len(new_user_pass) <= 100:
+        new_user_master_pass=getpass(create_passwrod_info)
+        if len(new_user_master_pass) >= 5 and len(new_user_master_pass) <= 100:
             subprocess.run(["setx",'account_password_enc_key',Fernet.generate_key()],check=True)
-            subprocess.run(["setx",user_env_pass_name,bcrypt.hashpw(new_user_pass.encode(),bcrypt.gensalt())],check=True)
+            subprocess.run(["setx",user_env_pass_name,bcrypt.hashpw(new_user_master_pass.encode(),bcrypt.gensalt())],check=True)
             print("Your app is quite ready to use... Just one step")
             print("Please restart the app!")
             exit(1)
@@ -34,8 +34,8 @@ if user_env_password == None:
 else:
     # user login
     while True:
-     user_pass=getpass("Please enter your password: ")
-     if bcrypt.checkpw(user_pass.encode(),user_env_password.encode() ) :
+     user_master_pass=getpass("Please enter your password: ")
+     if bcrypt.checkpw(user_master_pass.encode(),user_env_password.encode() ) :
          cipher=Fernet(os.environ.get('account_password_enc_key').encode())
          break 
      else:

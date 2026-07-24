@@ -45,9 +45,6 @@ else:
 
 
 # access account/json file 
-# with open("accounts.json","r") as f:
-#     database=json.load(f) 
-
 if not os.path.exists("accounts.json"):
     with open("accounts.json", "w") as file:
         json.dump({}, file)
@@ -55,7 +52,7 @@ if not os.path.exists("accounts.json"):
 with open("accounts.json", "r") as file:
     database = json.load(file)
 
-    
+
 def appStart():
     options="""
     ==== Account Manager ====

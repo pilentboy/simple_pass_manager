@@ -1,9 +1,8 @@
 {
-    "gmail": {},
-    "netflix": {
-        "d7152ad4-90ef-4382-8558-895e453f6b02": {
-            "password": "gAAAAABqYzjwVvB1Dge32oDGjsfxAcYPHGPSj6h74__3fVG8lZiQiRT2A2hwwCqoo0Z8u330RzM6IK70Rr-I1X_vOEQbgb5jfA==",
-            "username": "filing"
+    "steam": {
+        "5653f4ed-08bc-4360-b379-e9b99fa3ac32": {
+            "password": "gAAAAABqY0CCbAaQAjroy19lKt_EnAoUud0Z27lLJVWc_B0D3XyXWmj5oPY5Cawklshtm5boXEA8lYAiXU0njj07x-dJsfob3g==",
+            "username": "test"
         }
     }
 }

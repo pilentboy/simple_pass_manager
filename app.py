@@ -95,7 +95,6 @@ def hash_password(password):
 
 
 
-#----------- error: saving hashed pass in json
 def add_new_account(username,password,accountType):
     new_account_id=str(uuid.uuid4())
     if(accountType.lower() in database):

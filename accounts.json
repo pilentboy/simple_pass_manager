@@ -1,20 +1,8 @@
 {
-    "test": {
-        "4fe63878-c87f-454e-9f9c-5e61aadc9f2c": {
-            "password": "gAAAAABqV89xsGrYnGymGpgiSEvl21SKqOmECSei1suM9-SZ6ppn8ViUQNAKK2hGXsDArMo_roC-et5s8uRyWhe8hIVDwk8iWQ==",
-            "username": "test"
-        }
-    },
-    "steam": {
-        "a3d734f5-36b9-444b-84e3-1d2421c23c11": {
-            "password": "gAAAAABqV9JF7RdKOnDEfRs7p6eMO4qDPKrf1imUu4rG_uBQz9trsi_A2uXXckftBxxbB3GLFyG486r-jDshjLHqXKf9MKm_jQ==",
-            "username": "test"
-        }
-    },
-    "gmail": {
-        "4c227e6e-867d-4792-b2db-5f8300a183ac": {
-            "password": "gAAAAABqV9Icj0clfPOPCND-TfUp3mnhAc0Kv3CDcYzTI9KiChLbTwQMzdI1CgwSaAELnlcFfXA7juGreOIxzLcSz3nwIWxzOA==",
-            "username": "test222"
-        }
+  "gmail": {
+    "adc358be-de06-4650-b4c0-3f0a6766e6a5": {
+      "password": "gAAAAABqYzfVc0ihpOgY5QK2C93tVY6bwLAC1caEf3OmrqpabSRAHBErt7g4L8445qBpWZM-YrwtrAMpmgwnuO-Nw40slmf3zA==",
+      "username": "test"
     }
+  }
 }

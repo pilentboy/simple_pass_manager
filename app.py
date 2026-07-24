@@ -10,9 +10,9 @@ from cryptography.fernet import Fernet
 
 #set password for this user
 user_env_pass_name="account_manager_password"
-user_env_password=os.environ.get(user_env_pass_name)
+user_env_master_password=os.environ.get(user_env_pass_name)
 
-if user_env_password == None:
+if user_env_master_password == None:
     create_passwrod_info="""
     ==== Account Manager ====
     Before starting:
@@ -35,7 +35,7 @@ else:
     # user login
     while True:
      user_master_pass=getpass("Please enter your password: ")
-     if bcrypt.checkpw(user_master_pass.encode(),user_env_password.encode() ) :
+     if bcrypt.checkpw(user_master_pass.encode(),user_env_master_password.encode() ) :
          cipher=Fernet(os.environ.get('account_password_enc_key').encode())
          break 
      else:

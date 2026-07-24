@@ -90,8 +90,6 @@ def save_databse():
         json.dump(database,f,indent=4)
 
 
-def hash_password(password):
-    return bcrypt.hashpw(password.encode(),bcrypt.gensalt())
 
 
 
@@ -145,7 +143,7 @@ def show_accounts(account_type="*"):
 def delete_account(account_type,username):
     if account_type in database:
         deleting_account=database[account_type]
-     
+        print(deleting_account)
         for a in deleting_account:
             if deleting_account[a]["username"] == username:
                 deleting_account.pop(a)

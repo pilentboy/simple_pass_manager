@@ -1,19 +1,21 @@
 import json
-import uuid
 import os
 import subprocess
+import uuid
+import sys 
+
 from getpass import getpass
+
 import bcrypt
 from cryptography.fernet import Fernet
 
 
-
 #set password for this user
-user_env_pass_name="account_manager_password"
-user_env_master_password=os.environ.get(user_env_pass_name)
+USER_ENV_PASSWORD_NAME="account_manager_password"
+stored_master_password=os.environ.get(USER_ENV_PASSWORD_NAME)
 
-if user_env_master_password == None:
-    create_passwrod_info="""
+if stored_master_password is None:
+    create_password_info="""
     ==== Account Manager ====
     Before starting:
     1) Create a password for using this app
@@ -22,20 +24,20 @@ if user_env_master_password == None:
     Your password: 
 """
     while True:
-        new_user_master_pass=getpass(create_passwrod_info)
-        if len(new_user_master_pass) >= 5 and len(new_user_master_pass) <= 100:
+        new_master_password=getpass(create_password_info)
+        if len(new_master_password) >= 5 and len(new_master_password) <= 100:
             subprocess.run(["setx",'account_password_enc_key',Fernet.generate_key()],check=True)
-            subprocess.run(["setx",user_env_pass_name,bcrypt.hashpw(new_user_master_pass.encode(),bcrypt.gensalt())],check=True)
+            subprocess.run(["setx",USER_ENV_PASSWORD_NAME,bcrypt.hashpw(new_master_password.encode(),bcrypt.gensalt())],check=True)
             print("Your app is quite ready to use... Just one step")
             print("Please restart the app!")
-            exit(1)
+            sys.exit(0)
         else:
             print("The password length must be over 4 characters and less than 100!")
 else:
     # user login
     while True:
-     user_master_pass=getpass("Please enter your password: ")
-     if bcrypt.checkpw(user_master_pass.encode(),user_env_master_password.encode() ) :
+     entered_master_password=getpass("Please enter your password: ")
+     if bcrypt.checkpw(entered_master_password.encode(),stored_master_password.encode() ) :
          cipher=Fernet(os.environ.get('account_password_enc_key').encode())
          break 
      else:
@@ -43,17 +45,18 @@ else:
 
     
 
+DATABASE_FILE = "accounts.json"
 
 # access account/json file 
-if not os.path.exists("accounts.json"):
-    with open("accounts.json", "w") as file:
+if not os.path.exists(DATABASE_FILE):
+    with open(DATABASE_FILE, "w") as file:
         json.dump({}, file)
 
-with open("accounts.json", "r") as file:
+with open(DATABASE_FILE, "r") as file:
     database = json.load(file)
 
 
-def appStart():
+def app_start():
     options="""
     ==== Account Manager ====
     1) Add Account
@@ -66,29 +69,31 @@ def appStart():
     account_type_title="""
   What's the name of the service? 
 """
-    user=str(input(options))
+    choice=input(options)
   
-    if user == "1":
-        account_type=str(input(account_type_title))
-        username=str(input("username: "))
-        password=str(input("password: "))
+    if choice == "1":
+        account_type=input(account_type_title)
+        username=input("username: ")
+        password=input("password: ")
         add_new_account(username,password,account_type)
-    if user == "2":
-        account_type=str(input(account_type_title))
+    elif  choice == "2":
+        account_type=input(account_type_title)
         show_accounts(account_type)
-    if user == "3":
-        account_type=str(input(account_type_title))
-        username=str(input("username: "))
+    elif  choice == "3":
+        account_type=input(account_type_title)
+        username=input("username: ")
         delete_account(account_type,username) 
-    if user == "4":
-        exit(0)
+    elif  choice == "4":
+        sys.exit(0)
+    else:
+        print("Invalid choice")
     
 
 
 
 
 
-def save_databse():
+def save_database():
     with open("accounts.json","w") as f:
         json.dump(database,f,indent=4)
 
@@ -96,9 +101,9 @@ def save_databse():
 
 
 
-def add_new_account(username,password,accountType):
+def add_new_account(username,password,account_type):
     new_account_id=str(uuid.uuid4())
-    lower_account_type=accountType.lower()
+    lower_account_type=account_type.lower()
     if(lower_account_type in database):
         service_modifying=database[lower_account_type]
         service_modifying[new_account_id]={
@@ -112,8 +117,8 @@ def add_new_account(username,password,accountType):
             "username":username
             }
         }
-    save_databse()
-    print("New account addedd successfuly")
+    save_database()
+    print("New account added successfully")
 
     
 
@@ -148,11 +153,10 @@ def delete_account(account_type,username):
     lower_account_type=account_type.lower()
     if lower_account_type in database:
         deleting_account=database[lower_account_type]
-        print(deleting_account)
         for a in deleting_account:
             if deleting_account[a]["username"] == username:
                 deleting_account.pop(a)
-                save_databse()
+                save_database()
                 print("The account deleted successfuly")
                 break
         else:
@@ -162,7 +166,7 @@ def delete_account(account_type,username):
 
 
 while True:
-    appStart()
+    app_start()
 
 
 

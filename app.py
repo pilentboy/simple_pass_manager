@@ -98,14 +98,15 @@ def save_databse():
 
 def add_new_account(username,password,accountType):
     new_account_id=str(uuid.uuid4())
-    if(accountType.lower() in database):
-        service_modifying=database[accountType]
+    lower_account_type=accountType.lower()
+    if(lower_account_type in database):
+        service_modifying=database[lower_account_type]
         service_modifying[new_account_id]={
             "password":cipher.encrypt(password.encode()).decode(),
             "username":username
         }
     else:
-        database[accountType]={
+        database[lower_account_type]={
             new_account_id:{
             "password":cipher.encrypt(password.encode()).decode(),
             "username":username
@@ -144,8 +145,9 @@ def show_accounts(account_type="*"):
             print("---------")
 
 def delete_account(account_type,username):
-    if account_type in database:
-        deleting_account=database[account_type]
+    lower_account_type=account_type.lower()
+    if lower_account_type in database:
+        deleting_account=database[lower_account_type]
         print(deleting_account)
         for a in deleting_account:
             if deleting_account[a]["username"] == username:

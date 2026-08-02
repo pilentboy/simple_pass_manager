@@ -133,11 +133,11 @@ def show_accounts(account_type="*"):
         
                 
         return
-    if  account_type not in database:
+    if  account_type.lower() not in database:
         print("you have no account saved in the database  for this service")
         return 
     else:
-        selected_service=database[account_type]
+        selected_service=database[account_type.lower()]
         for s in selected_service:
             print(f"username: {selected_service[s]['username']}")
             print(f"password: {cipher.decrypt(selected_service[s]['password']).decode()}")
